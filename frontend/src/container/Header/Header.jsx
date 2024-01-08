@@ -30,13 +30,13 @@ const Header = () => {
             <span>👋</span>
             <div style={{ marginLeft: 20 }}>
               <p className="p-text">Hello, I am</p>
-              <h1 className="head-text">Ben</h1>
+              <h1 className="head-text">KUSHAGRA</h1>
             </div>
           </div>
 
           <div className="tag-cmp app__flex">
             <p className="p-text">Web Developer</p>
-            <p className="p-text">Freelancer</p>
+            <p className="p-text">SOFTWARE ENGINEER</p>
           </div>
         </div>
       </motion.div>
@@ -65,10 +65,10 @@ const Header = () => {
       </motion.div>
 
       <div className="app__header-icons">
-        <a href="https://github.com/benztranwot" target="_blank" rel="noreferrer">
+        <a href="https://github.com/KushagraAgrawal29" target="_blank" rel="noreferrer">
           <AiFillGithub />
         </a>
-        <a href="https://www.linkedin.com/in/benz-tran" target="_blank" rel="noreferrer">
+        <a href="https://www.linkedin.com/in/kushagra-agrawal-3aa619259/" target="_blank" rel="noreferrer">
           <AiFillLinkedin />
         </a>
         <a href="#contact">

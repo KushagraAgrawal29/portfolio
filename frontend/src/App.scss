@@ -71,7 +71,7 @@
 
   background-image: linear-gradient(to right, var(--color-secondary-light), var(--color-secondary-dark));
   -webkit-background-clip: text;
-  color: transparent;
+  color: var(--black-color);
 
   @media screen and (min-width: 2000px) {
     font-size: 4rem;

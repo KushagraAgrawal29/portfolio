@@ -7,7 +7,7 @@ import design from "../assets/design.png";
 
 import about from "../assets/about.svg";
 
-import profile from "../assets/profile.jpg";
+import res from "../assets/res.jpg";
 import circle from "../assets/circle.svg";
 import logo from "../assets/logo.png";
 import icon from "../assets/icon.png";
@@ -20,7 +20,7 @@ export default {
   code,
   design,
   about,
-  profile,
+  res,
   circle,
   logo,
   icon,
