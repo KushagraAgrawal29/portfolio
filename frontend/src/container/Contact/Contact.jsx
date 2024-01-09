@@ -1,83 +1,87 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import images from "../../constants/images";
-import AppWrap from "../../wrapper/appWrap";
-import MotionWrap from "../../wrapper/motionWrap";
-import "./Contact.scss";
+import images from '../../constants/images';
+import AppWrap from '../../wrapper/appWrap';
+import MotionWrap from '../../wrapper/motionWrap';
+import { client } from '../../client';
+import './Contact.scss';
 
-const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const today = getDateTime();
+const Footer = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  function getDateTime() {
-    const today = new Date();
-    const todayDate = today.getUTCDate() < 10 ? `0${today.getUTCDate()}` : today.getUTCDate();
-    const todayMonth = today.getUTCMonth() < 9 ? `0${today.getUTCMonth() + 1}` : today.getUTCMonth() + 1;
-    const todayYear = today.getUTCFullYear();
-    const thisHour = today.getUTCHours() < 10 ? `0${today.getUTCHours()}` : today.getUTCHours();
-    const thisMinute = today.getUTCMinutes() < 10 ? `0${today.getUTCMinutes()}` : today.getUTCMinutes();
-    const thisSecond = today.getUTCSeconds() < 10 ? `0${today.getUTCSeconds()}` : today.getUTCSeconds();
-    const dateTime = `${todayDate}/${todayMonth}/${todayYear} ${thisHour}:${thisMinute}:${thisSecond}`;
-    return dateTime;
-  }
+  const { username, email, message } = formData;
 
-  function submitForm(e) {
-    e.preventDefault();
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    setSubmitted(true);
+  const handleSubmit = () => {
+    setLoading(true);
 
-    const form = document.querySelector(".app__contact-form");
-    const formData = new FormData(form);
-    const url = "https://formsubmit.co/5f5f19063ba936a80c82dbd0b94b1526";
+    const contact = {
+      _type: 'contact',
+      name: formData.username,
+      email: formData.email,
+      message: formData.message,
+    };
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    });
-
-    return false;
-  }
+    client.create(contact)
+      .then(() => {
+        setLoading(false);
+        setIsFormSubmitted(true);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
-      <h2 className="head-text">Drop Me A Message</h2>
+      <h2 className="head-text">Take a coffee & chat with me</h2>
 
-      <div className="app__contact-cards">
-        <div className="app__contact-card ">
+      <div className="app__footer-cards">
+        <div className="app__footer-card ">
           <img src={images.email} alt="email" />
-          <a href="mailto:benzdev0305@gmail.com" className="p-text">
-            agrawalkushagra29@gmail.com
-          </a>
+          <a href="mailto:hello@micael.com" className="p-text">hello@micael.com</a>
+        </div>
+        <div className="app__footer-card">
+          <img src={images.mobile} alt="phone" />
+          <a href="tel:+1 (123) 456-7890" className="p-text">+91 9557606162</a>
         </div>
       </div>
-
-      {!submitted && (
-        <form className="app__contact-form app__flex" onSubmit={submitForm}>
+      {!isFormSubmitted ? (
+        <div className="app__footer-form app__flex">
           <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="username" required />
+            <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
           </div>
           <div className="app__flex">
-            <input className="p-text" type="email" placeholder="Your Email" name="email" required />
+            <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
           </div>
           <div>
-            <textarea className="p-text" placeholder="Your Message" name="message" required />
+            <textarea
+              className="p-text"
+              placeholder="Your Message"
+              value={message}
+              name="message"
+              onChange={handleChangeInput}
+            />
           </div>
-          <input type="hidden" name="_subject" value={today}></input>
-          <input type="hidden" name="_captcha" value="false"></input>
-          <button type="submit" className="p-text mt-4">
-            Send Message
-          </button>
-        </form>
-      )}
-
-      {submitted && (
+          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+        </div>
+      ) : (
         <div>
-          <h3 className="head-text">Thank you</h3>
-          <h3 className="p-text reply-text">I'll get back to you as soon as possible!</h3>
+          <h3 className="head-text">
+            Thank you for getting in touch!
+          </h3>
         </div>
       )}
     </>
   );
 };
 
-export default AppWrap(MotionWrap(Contact, "app__contact"), "contact", "app__whitebg");
+export default AppWrap(
+  MotionWrap(Footer, 'app__footer'),
+  'contact',
+  'app__whitebg',
+);

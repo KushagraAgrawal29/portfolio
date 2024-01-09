@@ -1,4 +1,4 @@
-.app__contact {
+.app__footer {
     flex: 1;
     width: 100%;
     flex-direction: column;
@@ -8,19 +8,15 @@
     }
   }
   
-  .app__contact-cards {
+  .app__footer-cards {
     width: 60%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1rem;
+    margin: 4em 2rem 2rem;
   
-    @media screen and (min-width: 2000px) {
-      margin: 3rem;
-    }
-  
-    .app__contact-card {
+    .app__footer-card {
       min-width: 290px;
       display: flex;
       flex-direction: row;
@@ -34,11 +30,6 @@
       background-color: #fef4f5;
   
       transition: all 0.3s ease-in-out;
-  
-      @media screen and (min-width: 2000px) {
-        padding: 3rem;
-        border-radius: 24px;
-      }
   
       img {
         width: 40px;
@@ -67,17 +58,15 @@
     }
   }
   
-  .app__contact-cards .app__contact-card {
+  .app__footer-cards .app__footer-card:last-child {
     background-color: #f2f7fb;
   }
   
-  .app__contact-cards .app__contact-card:hover {
-    background-color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0px 1rem 2rem rgba(0, 0, 0, 0.2);
+  .app__footer-cards .app__footer-card:last-child:hover {
+    box-shadow: 0 0 25px #f2f7fb;
   }
   
-  .app__contact-form {
+  .app__footer-form {
     width: 60%;
     flex-direction: column;
     margin: 1rem 2rem;
@@ -92,10 +81,6 @@
   
       transition: all 0.3s ease-in-out;
   
-      @media screen and (min-width: 2000px) {
-        margin: 1rem 0;
-      }
-  
       input,
       textarea {
         width: 100%;
@@ -107,10 +92,6 @@
         font-family: var(--font-base);
         color: var(--secondary-color);
         outline: none;
-  
-        @media screen and (min-width: 2000px) {
-          border-radius: 20px;
-        }
       }
   
       textarea {
@@ -122,22 +103,28 @@
       }
     }
   
+    button {
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: none;
+      background-color: var(--secondary-color);
+  
+      font-weight: 500;
+      color: var(--white-color);
+      outline: none;
+      margin: 2rem 0 0 0;
+      font-family: var(--font-base);
+  
+      transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #2430af;
+      }
+    }
+  
     @media screen and (max-width: 768px) {
       width: 100%;
       margin: 1rem 0;
     }
   }
-  
-  .reply-text {
-    text-align: center;
-    font-size: 1.75rem !important;
-  
-    @media screen and (min-width: 1500px) {
-      font-size: 2.5rem !important;
-    }
-  
-    @media screen and (max-width: 450px) {
-      font-size: 1.25rem !important;
-    }
-  }
-  
